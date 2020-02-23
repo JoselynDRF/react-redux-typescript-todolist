@@ -13,4 +13,4 @@ Tools needed to run this app: `node` and `npm`
 After you have installed all dependencies, you may run the app.
 
 - `npm start`
-- Go to `http://localhost:3000/`
+- Go to `http://localhost:3000`
