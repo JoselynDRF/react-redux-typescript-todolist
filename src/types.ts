@@ -2,15 +2,14 @@
  * Action types
  */
 export enum ItemsTypes {
-  TOGGLE_ITEM = 'TOGGLE_ITEM'
+  TOGGLE_ITEM = 'TOGGLE_ITEM',
+  REMOVE_ITEM = 'REMOVE_ITEM',
 }
 
-interface ToggleItemAction {
+export interface TodoListActionTypes {
   type: string,
   payload: Item
 }
-
-export type TodoListActionTypes = ToggleItemAction;
 
 /**
  * Data types

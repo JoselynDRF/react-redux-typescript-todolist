@@ -6,3 +6,10 @@ export const toggleItem = (id: number): TodoListActionTypes => ({
     id,
   },
 });
+
+export const removeItem = (id: number): TodoListActionTypes => ({
+  type: ItemsTypes.REMOVE_ITEM,
+  payload: {
+    id,
+  },
+});

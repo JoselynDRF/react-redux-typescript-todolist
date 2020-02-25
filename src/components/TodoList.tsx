@@ -9,7 +9,8 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  toggleItem(id: number): void
+  toggleItem(id: number): void,
+  removeItem(id: number): void
 }
 
 type Props = StateProps & DispatchProps;
@@ -20,7 +21,7 @@ class TodoList extends Component<Props> {
   };
 
   render() {
-    const { items, toggleItem } = this.props;
+    const { items, toggleItem, removeItem } = this.props;
 
     return (
       <section>
@@ -30,6 +31,7 @@ class TodoList extends Component<Props> {
               {item.complete ? <s>{item.text}</s> : item.text}
               <div>
                 <button type="button" onClick={() => toggleItem(item.id)}>Toggle</button>
+                <button type="button" onClick={() => removeItem(item.id)}>Remove</button>
               </div>
             </li>
           ))}
