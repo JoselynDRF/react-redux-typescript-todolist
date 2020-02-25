@@ -17,8 +17,8 @@ export interface TodoListActionTypes {
  */
 export interface Item {
   id: number,
-  text?: string,
-  complete?: boolean
+  text: string,
+  complete: boolean
 }
 
 /**
