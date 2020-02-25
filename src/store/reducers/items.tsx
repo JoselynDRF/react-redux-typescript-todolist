@@ -14,6 +14,18 @@ const initialState: ItemsState = {
 
 export default (state = initialState, action: TodoListActionTypes): ItemsState => {
   switch (action.type) {
+    case 'ADD_ITEM':
+      return {
+        data: [
+          ...state.data,
+          {
+            id: Math.random(),
+            text: action.payload.text,
+            complete: false,
+          },
+        ],
+      };
+
     case ItemsTypes.TOGGLE_ITEM:
       return {
         data: state.data.map((item) => ((item.id === action.payload.id)

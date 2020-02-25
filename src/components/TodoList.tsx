@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Item, ApplicationState } from '../types';
@@ -9,6 +9,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
+  addItem(text: string): void,
   toggleItem(id: number): void,
   removeItem(id: number): void
 }
@@ -16,8 +17,12 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 class TodoList extends Component<Props> {
-  handleSubmit = () => {
-    console.log('Submit');
+  inputText = React.createRef<HTMLInputElement>();
+
+  handleSubmit = (e: FormEvent) => {
+    const { addItem } = this.props;
+    e.preventDefault();
+    addItem(this.inputText.current?.value || '');
   };
 
   render() {
@@ -25,6 +30,10 @@ class TodoList extends Component<Props> {
 
     return (
       <section>
+        <form onSubmit={this.handleSubmit}>
+          <input ref={this.inputText} />
+          <button type="submit">Novo</button>
+        </form>
         <ul>
           {items.map((item) => (
             <li key={item.id}>
