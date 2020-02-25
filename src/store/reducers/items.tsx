@@ -1,15 +1,21 @@
-const INITIAL_STATE: any = [{
-  id: 1,
-  text: 'Test',
-  complete: false,
-}];
+import { ItemsState, ItemsTypes, TodoListActionTypes } from '../../types';
 
-export default (state = INITIAL_STATE, action: any) => {
+const initialState: ItemsState = {
+  data: [{
+    id: 1,
+    text: 'Test',
+    complete: false,
+  }],
+};
+
+export default (state = initialState, action: TodoListActionTypes): ItemsState => {
   switch (action.type) {
-    case 'TOGGLE_ITEM':
-      return state.map((item: any) => ((item.id === action.payload.id)
-        ? { ...item, complete: !item.complete }
-        : item));
+    case ItemsTypes.TOGGLE_ITEM:
+      return {
+        data: state.data.map((item) => ((item.id === action.payload.id)
+          ? { ...item, complete: !item.complete }
+          : item)),
+      };
 
     default:
       return state;

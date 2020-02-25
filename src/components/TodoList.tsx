@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { Item, ApplicationState } from '../types';
 import * as itemsActions from '../store/actions/items';
 
-class TodoList extends Component<any> {
+interface StateProps {
+  items: Item[]
+}
+
+interface DispatchProps {
+  toggleItem(id: number): void
+}
+
+type Props = StateProps & DispatchProps;
+
+class TodoList extends Component<Props> {
   handleSubmit = () => {
     console.log('Submit');
   };
@@ -14,7 +25,7 @@ class TodoList extends Component<any> {
     return (
       <section>
         <ul>
-          {items.map((item: any) => (
+          {items.map((item) => (
             <li key={item.id}>
               {item.complete ? <s>{item.text}</s> : item.text}
               <div>
@@ -28,11 +39,11 @@ class TodoList extends Component<any> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  items: state.items,
+const mapStateToProps = (state: ApplicationState) => ({
+  items: state.items.data,
 });
 
-const mapDispatchToProps = (dispatch: any) => bindActionCreators(itemsActions, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(itemsActions, dispatch);
 
 export default connect(
   mapStateToProps,
