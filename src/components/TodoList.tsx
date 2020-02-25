@@ -24,19 +24,20 @@ const TodoList = (props: Props) => {
     removeItem,
   } = props;
 
-  const inputText = useRef<HTMLInputElement>();
+  const inputText = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: FormEvent) => {
+  const submitHandler = (e: FormEvent) => {
     e.preventDefault();
 
-    let newItemText = inputText.current.value;
-    addItem(newItemText);
-    newItemText = '';
+    if (inputText && inputText.current) {
+      addItem(inputText.current.value);
+      inputText.current.value = '';
+    }
   };
 
   return (
     <section>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitHandler}>
         <input ref={inputText} />
         <button type="submit">Novo</button>
       </form>
