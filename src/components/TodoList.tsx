@@ -36,12 +36,12 @@ const TodoList = (props: Props) => {
   };
 
   return (
-    <section>
+    <div className="todo-list">
       <form onSubmit={submitHandler}>
         <input ref={inputText} />
         <button type="submit">Novo</button>
       </form>
-      <ul>
+      <ul className="items">
         {items.map((item) => (
           <li key={item.id}>
             {item.complete ? <s>{item.text}</s> : item.text}
@@ -52,7 +52,7 @@ const TodoList = (props: Props) => {
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   );
 };
 
