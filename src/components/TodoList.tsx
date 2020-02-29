@@ -37,21 +37,27 @@ const TodoList = (props: Props) => {
 
   return (
     <div className="todo-list">
-      <form onSubmit={submitHandler}>
-        <input ref={inputText} />
-        <button type="submit">Novo</button>
-      </form>
-      <ul className="items">
-        {items.map((item) => (
-          <li key={item.id}>
-            {item.complete ? <s>{item.text}</s> : item.text}
-            <div>
-              <button type="button" onClick={() => toggleItem(item.id)}>Toggle</button>
-              <button type="button" onClick={() => removeItem(item.id)}>Remove</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className="header">
+        TodoList
+      </div>
+
+      <div className="content">
+        <form onSubmit={submitHandler}>
+          <input ref={inputText} placeholder="Example: Clean the car" />
+          <button type="submit">+</button>
+        </form>
+        <ul className="items">
+          {items.map((item) => (
+            <li key={item.id}>
+              {item.complete ? <s>{item.text}</s> : item.text}
+              <div>
+                <button type="button" onClick={() => toggleItem(item.id)}>Toggle</button>
+                <button type="button" onClick={() => removeItem(item.id)}>Remove</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
