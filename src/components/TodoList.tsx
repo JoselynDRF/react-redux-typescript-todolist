@@ -43,7 +43,7 @@ const TodoList = (props: Props) => {
 
       <div className="content">
         <form onSubmit={submitHandler}>
-          <input ref={inputText} placeholder="Example: Clean the car" />
+          <input ref={inputText} placeholder="Add a task..." />
           <button type="submit">
             <i className="fas fa-plus" />
           </button>
@@ -51,7 +51,15 @@ const TodoList = (props: Props) => {
         <ul className="items">
           {items.map((item) => (
             <li key={item.id}>
-              {item.complete ? <s>{item.text}</s> : item.text}
+              <div className="check-item-container">
+                <div
+                  onClick={() => toggleItem(item.id)}
+                  role="presentation"
+                  className={item.complete ? 'checkbox-item checked' : 'checkbox-item'}
+                />
+                <span>{item.complete ? <s>{item.text}</s> : item.text}</span>
+              </div>
+
               <div>
                 <span className="icon" role="presentation" onClick={() => toggleItem(item.id)}>
                   <i className="fas fa-pencil-alt" />
