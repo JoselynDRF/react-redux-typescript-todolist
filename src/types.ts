@@ -22,7 +22,7 @@ export interface Item {
 }
 
 /**
- * State type
+ * State types
  */
 export interface ApplicationState {
   items: ItemsState

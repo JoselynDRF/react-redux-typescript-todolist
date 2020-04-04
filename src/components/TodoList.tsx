@@ -4,6 +4,8 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { Item, ApplicationState } from '../types';
 import * as itemsActions from '../store/actions/items';
 
+import TodoItem from './TodoItem';
+
 interface StateProps {
   items: Item[]
 }
@@ -16,14 +18,12 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
-const TodoList = (props: Props) => {
-  const {
-    items,
-    addItem,
-    toggleItem,
-    removeItem,
-  } = props;
-
+const TodoList = ({
+  items,
+  addItem,
+  toggleItem,
+  removeItem,
+}: Props) => {
   const inputText = useRef<HTMLInputElement>(null);
 
   const submitHandler = (e: FormEvent) => {
@@ -43,32 +43,18 @@ const TodoList = (props: Props) => {
 
       <div className="content">
         <form onSubmit={submitHandler}>
-          <input ref={inputText} placeholder="Add a task..." />
+          <input ref={inputText} placeholder="What needs to be done?" />
           <button type="submit">
             <i className="fas fa-plus" />
           </button>
         </form>
         <ul className="items">
           {items.map((item) => (
-            <li key={item.id}>
-              <div className="check-item-container">
-                <div
-                  onClick={() => toggleItem(item.id)}
-                  role="presentation"
-                  className={item.complete ? 'checkbox-item checked' : 'checkbox-item'}
-                />
-                <span>{item.complete ? <s>{item.text}</s> : item.text}</span>
-              </div>
-
-              <div>
-                <span className="icon" role="presentation" onClick={() => toggleItem(item.id)}>
-                  <i className="fas fa-pencil-alt" />
-                </span>
-                <span className="icon" role="presentation" onClick={() => removeItem(item.id)}>
-                  <i className="fas fa-trash-alt" />
-                </span>
-              </div>
-            </li>
+            <TodoItem
+              item={item}
+              toggleItem={toggleItem}
+              removeItem={removeItem}
+            />
           ))}
         </ul>
       </div>
