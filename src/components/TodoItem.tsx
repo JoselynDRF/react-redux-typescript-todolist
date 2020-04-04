@@ -7,22 +7,22 @@ interface TodoItemProps {
   removeItem(id: number): void
 }
 
-export default ({ item, toggleItem, removeItem }: TodoItemProps) => (
-  <li key={item.id}>
+export default ({ item: { id, text, complete }, toggleItem, removeItem }: TodoItemProps) => (
+  <li key={id}>
     <div className="check-item-container">
       <div
-        onClick={() => toggleItem(item.id)}
+        onClick={() => toggleItem(id)}
         role="presentation"
-        className={item.complete ? 'checkbox-item checked' : 'checkbox-item'}
+        className={complete ? 'checkbox-item checked' : 'checkbox-item'}
       />
-      <span>{item.complete ? <s>{item.text}</s> : item.text}</span>
+      <span>{complete ? <s>{text}</s> : text}</span>
     </div>
 
     <div>
-      <span className="icon" role="presentation" onClick={() => toggleItem(item.id)}>
+      <span className="icon" role="presentation" onClick={() => toggleItem(id)}>
         <i className="fas fa-pencil-alt" />
       </span>
-      <span className="icon" role="presentation" onClick={() => removeItem(item.id)}>
+      <span className="icon" role="presentation" onClick={() => removeItem(id)}>
         <i className="fas fa-trash-alt" />
       </span>
     </div>
