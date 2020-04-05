@@ -15,6 +15,8 @@ interface StateProps {
 interface DispatchProps {
   addItem(text: string): void,
   toggleItem(id: number): void,
+  toggleEditItem(id: number): void,
+  updateItem(id: number, text: string): void,
   removeItem(id: number): void
 }
 
@@ -24,6 +26,8 @@ const TodoList = ({
   items,
   addItem,
   toggleItem,
+  toggleEditItem,
+  updateItem,
   removeItem,
 }: Props) => (
   <div className="todo-list">
@@ -35,8 +39,11 @@ const TodoList = ({
       <ul className="items">
         {items.map((item) => (
           <TodoItem
+            key={item.id}
             item={item}
             toggleItem={toggleItem}
+            toggleEditItem={toggleEditItem}
+            updateItem={updateItem}
             removeItem={removeItem}
           />
         ))}

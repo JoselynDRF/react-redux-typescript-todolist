@@ -91,6 +91,17 @@ body {
         color: $text-color;
         margin: 0 1.2rem;
 
+        .edit-item {
+          flex: 1;
+          color: $text-color;
+          height: 2.2rem;
+          font-size: 1rem;
+          padding: 0 1rem;
+          border: 1px solid #ddd;
+          border-radius: 0.2rem;
+          outline: none;
+        }
+
         .check-item-container {
           display: flex;
           align-items: center;

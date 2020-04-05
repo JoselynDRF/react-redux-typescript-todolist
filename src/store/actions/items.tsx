@@ -14,6 +14,21 @@ export const toggleItem = (id: number) => ({
   },
 });
 
+export const toggleEditItem = (id: number) => ({
+  type: ItemsTypes.TOGGLE_EDIT_ITEM,
+  payload: {
+    id,
+  },
+});
+
+export const updateItem = (id:number, text: string) => ({
+  type: ItemsTypes.UPDATE_ITEM,
+  payload: {
+    id,
+    text,
+  },
+});
+
 export const removeItem = (id: number) => ({
   type: ItemsTypes.REMOVE_ITEM,
   payload: {
