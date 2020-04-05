@@ -4,6 +4,7 @@ $secondary-base-color: #f77995;
 $secondary-dark-color: #f56c87;
 $background-color: #f1f1f1;
 $white-color: #fff;
+$text-light-color: #bbb;
 $text-color: #525252;
 
 $fa-font-path: "~font-awesome/fonts";
@@ -97,7 +98,7 @@ body {
           height: 2.2rem;
           font-size: 1rem;
           padding: 0 1rem;
-          border: 1px solid #ddd;
+          border: 1px solid $text-light-color;
           border-radius: 0.2rem;
           outline: none;
         }
@@ -119,6 +120,19 @@ body {
     
         + li {
           border-top: 1px solid $background-color;
+        }
+      }
+ 
+      .empty-list {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        color: $text-light-color;
+        margin: 1.2rem;
+
+        .empty-icon {
+          font-size: 3rem;
+          margin: 1rem;
         }
       }
     }

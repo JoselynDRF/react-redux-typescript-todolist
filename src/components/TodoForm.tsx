@@ -10,7 +10,7 @@ export default ({ addItem }: TodoFormProps) => {
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
 
-    if (inputText && inputText.current) {
+    if (inputText && inputText.current && inputText.current.value !== '') {
       addItem(inputText.current.value);
       inputText.current.value = '';
     }

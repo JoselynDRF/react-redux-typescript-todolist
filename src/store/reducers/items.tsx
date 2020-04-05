@@ -1,17 +1,7 @@
 import { ItemsState, ItemsTypes, TodoListActionTypes } from '../../types';
 
 const initialState: ItemsState = {
-  data: [{
-    id: 1,
-    text: 'Test 1',
-    editing: false,
-    complete: false,
-  }, {
-    id: 2,
-    text: 'Test 2',
-    editing: false,
-    complete: false,
-  }],
+  data: [],
 };
 
 export default (state = initialState, action: TodoListActionTypes): ItemsState => {

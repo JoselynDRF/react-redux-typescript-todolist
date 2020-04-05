@@ -20,15 +20,13 @@ export default ({
 }: TodoItemProps) => {
   const inputText = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (inputText && inputText.current) {
-      inputText.current.focus();
-    }
-  });
+  useEffect(() => inputText?.current?.focus());
 
   const acceptEdit = (itemID: number) => {
-    if (inputText && inputText.current) {
-      updateItem(itemID, inputText.current.value);
+    const itemText = inputText?.current?.value?.trim() || '';
+
+    if (itemText !== '') {
+      updateItem(itemID, itemText);
       toggleEditItem(itemID);
     }
   };

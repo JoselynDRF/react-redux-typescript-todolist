@@ -37,16 +37,22 @@ const TodoList = ({
       <TodoForm addItem={addItem} />
 
       <ul className="items">
-        {items.map((item) => (
-          <TodoItem
-            key={item.id}
-            item={item}
-            toggleItem={toggleItem}
-            toggleEditItem={toggleEditItem}
-            updateItem={updateItem}
-            removeItem={removeItem}
-          />
-        ))}
+        {items.length
+          ? items.map((item) => (
+            <TodoItem
+              key={item.id}
+              item={item}
+              toggleItem={toggleItem}
+              toggleEditItem={toggleEditItem}
+              updateItem={updateItem}
+              removeItem={removeItem}
+            />
+          )) : (
+            <div className="empty-list">
+              <i className="fas fa-clipboard-list empty-icon" />
+              <span>Add your first To Do!</span>
+            </div>
+          )}
       </ul>
     </div>
   </div>
