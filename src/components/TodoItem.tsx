@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Item } from '../types';
 
 interface TodoItemProps {
@@ -19,6 +19,12 @@ export default ({
   removeItem,
 }: TodoItemProps) => {
   const inputText = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputText && inputText.current) {
+      inputText.current.focus();
+    }
+  });
 
   const acceptEdit = (itemID: number) => {
     if (inputText && inputText.current) {
