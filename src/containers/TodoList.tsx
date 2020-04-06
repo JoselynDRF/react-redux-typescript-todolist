@@ -34,7 +34,10 @@ const TodoList = ({
     <Header title="TodoList" />
 
     <div className="content">
-      <TodoForm addItem={addItem} />
+      <TodoForm
+        emptyList={!items.length}
+        addItem={addItem}
+      />
 
       <ul className="items">
         {items.length

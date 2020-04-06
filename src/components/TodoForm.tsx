@@ -1,11 +1,18 @@
-import React, { FormEvent, useRef } from 'react';
+import React, { FormEvent, useRef, useEffect } from 'react';
 
 interface TodoFormProps {
+  emptyList: boolean,
   addItem(text: string): void,
 }
 
-export default ({ addItem }: TodoFormProps) => {
+export default ({ emptyList, addItem }: TodoFormProps) => {
   const inputText = useRef<HTMLInputElement>(null);
+
+  const focusInputText = () => inputText?.current?.focus();
+
+  useEffect(() => {
+    if (emptyList) focusInputText();
+  });
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();

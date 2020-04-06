@@ -56,7 +56,7 @@ body {
         font-size: 1rem;
         color: #666;
         border: 0;
-        outline: none;
+        outline-color: $text-light-color;
       }
 
       ::placeholder {
@@ -100,7 +100,7 @@ body {
           padding: 0 1rem;
           border: 1px solid $text-light-color;
           border-radius: 0.2rem;
-          outline: none;
+          outline-color: $primary-base-color;
         }
 
         .check-item-container {
