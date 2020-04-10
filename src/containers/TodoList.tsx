@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
@@ -45,10 +46,48 @@ const TodoList = ({
           addItem={addItem}
         />
 
-        <ul className="items">
-          {items.length
-            ? (
-              <>
+        {items.length === 0
+          ? (
+            filterState === VisibilityFilters.SHOW_COMPLETED
+              ? (
+                <>
+                  <div className="empty-list">
+                    <i className="fas fa-clipboard-list empty-icon" />
+                    <span>There are no tasks completed yet!</span>
+                  </div>
+
+                  <div className="filters-container">
+                    {filterState === VisibilityFilters.SHOW_COMPLETED
+                      ? (
+                        <span>
+                          {completedItems()}
+                          {' '}
+                          completed tasks
+                        </span>
+                      )
+                      : (
+                        <span>
+                          {activeItems()}
+                          {' '}
+                          tasks left
+                        </span>
+                      ) }
+                    <div className="filters">
+                      <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+                      <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+                      <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="empty-list">
+                  <i className="fas fa-clipboard-list empty-icon" />
+                  <span>Add your first To Do!</span>
+                </div>
+              )
+          ) : (
+            <>
+              <ul className="items">
                 {items.map((item) => (
                   <TodoItem
                     key={item.id}
@@ -59,36 +98,32 @@ const TodoList = ({
                     removeItem={removeItem}
                   />
                 ))}
-                <div className="filters-container">
-                  {filterState === VisibilityFilters.SHOW_COMPLETED
-                    ? (
-                      <span>
-                        {completedItems()}
-                        {' '}
-                        completed tasks
-                      </span>
-                    )
-                    : (
-                      <span>
-                        {activeItems()}
-                        {' '}
-                        tasks left
-                      </span>
-                    ) }
-                  <div className="filters">
-                    <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-                    <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-                    <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
-                  </div>
+              </ul>
+
+              <div className="filters-container">
+                {filterState === VisibilityFilters.SHOW_COMPLETED
+                  ? (
+                    <span>
+                      {completedItems()}
+                      {' '}
+                      completed tasks
+                    </span>
+                  )
+                  : (
+                    <span>
+                      {activeItems()}
+                      {' '}
+                      tasks left
+                    </span>
+                  ) }
+                <div className="filters">
+                  <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+                  <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+                  <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
                 </div>
-              </>
-            ) : (
-              <div className="empty-list">
-                <i className="fas fa-clipboard-list empty-icon" />
-                <span>Add your first To Do!</span>
               </div>
-            )}
-        </ul>
+            </>
+          )}
       </div>
     </div>
   );

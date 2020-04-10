@@ -122,40 +122,40 @@ body {
           border-top: 1px solid $background-color;
         }
       }
+    }
 
-      .filters-container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 1rem;
-        padding: 0.5rem;
-        font-size: 14px;
-        color: $text-light-color;
+    .filters-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      font-size: 14px;
+      color: $text-light-color;
 
-        .selected {
-          color: $text-color
-        }
-
-        .filters > * {
-          margin: 0 0.2rem;
-          cursor: pointer;
-
-          &:hover {
-            color: $text-color;
-          }
-        }
+      .selected {
+        color: $text-color
       }
 
-      .empty-list {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        color: $text-light-color;
-        margin: 1.2rem;
+      .filters > * {
+        margin: 0 0.2rem;
+        cursor: pointer;
 
-        .empty-icon {
-          font-size: 3rem;
-          margin: 1rem;
+        &:hover {
+          color: $text-color;
         }
+      }
+    }
+
+    .empty-list {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      color: $text-light-color;
+      margin: 1.2rem;
+
+      .empty-icon {
+        font-size: 3rem;
+        margin: 1rem;
       }
     }
   }
