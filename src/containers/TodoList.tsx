@@ -8,6 +8,7 @@ import TodoForm from '../components/TodoForm';
 import TodoItem from '../components/TodoItem';
 import * as itemsActions from '../store/actions/items';
 import { ApplicationState, Item, VisibilityFilters } from '../types';
+import EmptyMessage from '../components/EmptyMessage';
 
 interface StateProps {
   items: Item[],
@@ -57,19 +58,10 @@ const TodoList = ({
             filterState === VisibilityFilters.SHOW_COMPLETED
               ? (
                 <>
-                  <div className="empty-list">
-                    <i className="fas fa-clipboard-list empty-icon" />
-                    <span>There are no tasks completed yet!</span>
-                  </div>
-
+                  <EmptyMessage message="There are no tasks completed yet!" />
                   <TodoFilters taskCounter={getTaskCounter()} />
                 </>
-              ) : (
-                <div className="empty-list">
-                  <i className="fas fa-clipboard-list empty-icon" />
-                  <span>Add your first To Do!</span>
-                </div>
-              )
+              ) : <EmptyMessage message="Add your first To Do!" />
           ) : (
             <>
               <ul className="items">
