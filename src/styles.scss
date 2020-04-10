@@ -131,11 +131,15 @@ body {
         font-size: 14px;
         color: $text-light-color;
 
+        .selected {
+          color: $text-color
+        }
+
         .filters > * {
           margin: 0 0.2rem;
           cursor: pointer;
 
-          &:hover, &.selected {
+          &:hover {
             color: $text-color;
           }
         }

@@ -9,7 +9,8 @@ import { ApplicationState, Item, VisibilityFilters } from '../types';
 import FilterLink from './FilterLink';
 
 interface StateProps {
-  items: Item[]
+  items: Item[],
+  filterState: string
 }
 
 interface DispatchProps {
@@ -29,49 +30,69 @@ const TodoList = ({
   toggleEditItem,
   updateItem,
   removeItem,
-}: Props) => (
-  <div className="todo-list">
-    <Header title="TodoList" />
+  filterState,
+}: Props) => {
+  const activeItems = () => items.filter((item) => !item.complete).length;
+  const completedItems = () => items.filter((item) => item.complete).length;
 
-    <div className="content">
-      <TodoForm
-        emptyList={!items.length}
-        addItem={addItem}
-      />
+  return (
+    <div className="todo-list">
+      <Header title="TodoList" />
 
-      <ul className="items">
-        {items.length
-          ? (
-            <>
-              {items.map((item) => (
-                <TodoItem
-                  key={item.id}
-                  item={item}
-                  toggleItem={toggleItem}
-                  toggleEditItem={toggleEditItem}
-                  updateItem={updateItem}
-                  removeItem={removeItem}
-                />
-              ))}
-              <div className="filters-container">
-                <span>3 tasks left</span>
-                <div className="filters">
-                  <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-                  <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-                  <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+      <div className="content">
+        <TodoForm
+          emptyList={!items.length}
+          addItem={addItem}
+        />
+
+        <ul className="items">
+          {items.length
+            ? (
+              <>
+                {items.map((item) => (
+                  <TodoItem
+                    key={item.id}
+                    item={item}
+                    toggleItem={toggleItem}
+                    toggleEditItem={toggleEditItem}
+                    updateItem={updateItem}
+                    removeItem={removeItem}
+                  />
+                ))}
+                <div className="filters-container">
+                  {filterState === VisibilityFilters.SHOW_COMPLETED
+                    ? (
+                      <span>
+                        {completedItems()}
+                        {' '}
+                        completed tasks
+                      </span>
+                    )
+                    : (
+                      <span>
+                        {activeItems()}
+                        {' '}
+                        tasks left
+                      </span>
+                    ) }
+                  <div className="filters">
+                    <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+                    <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+                    <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+                  </div>
                 </div>
+              </>
+            ) : (
+              <div className="empty-list">
+                <i className="fas fa-clipboard-list empty-icon" />
+                <span>Add your first To Do!</span>
               </div>
-            </>
-          ) : (
-            <div className="empty-list">
-              <i className="fas fa-clipboard-list empty-icon" />
-              <span>Add your first To Do!</span>
-            </div>
-          )}
-      </ul>
+            )}
+        </ul>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const filterItems = (items: Item[], filter: string) => {
   switch (filter) {
@@ -86,6 +107,7 @@ const filterItems = (items: Item[], filter: string) => {
 
 const mapStateToProps = (state: ApplicationState) => ({
   items: filterItems(state.items.data, state.filterState),
+  filterState: state.filterState,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(itemsActions, dispatch);
