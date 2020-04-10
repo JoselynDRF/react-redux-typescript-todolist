@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { Item, ApplicationState } from '../types';
-import * as itemsActions from '../store/actions/items';
-
 import Header from '../components/Header';
 import TodoForm from '../components/TodoForm';
 import TodoItem from '../components/TodoItem';
+import * as itemsActions from '../store/actions/items';
+import { ApplicationState, Item, VisibilityFilters } from '../types';
+import FilterLink from './FilterLink';
 
 interface StateProps {
   items: Item[]
@@ -41,16 +41,25 @@ const TodoList = ({
 
       <ul className="items">
         {items.length
-          ? items.map((item) => (
-            <TodoItem
-              key={item.id}
-              item={item}
-              toggleItem={toggleItem}
-              toggleEditItem={toggleEditItem}
-              updateItem={updateItem}
-              removeItem={removeItem}
-            />
-          )) : (
+          ? (
+            <>
+              {items.map((item) => (
+                <TodoItem
+                  key={item.id}
+                  item={item}
+                  toggleItem={toggleItem}
+                  toggleEditItem={toggleEditItem}
+                  updateItem={updateItem}
+                  removeItem={removeItem}
+                />
+              ))}
+              <div>
+                <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+                <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+                <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+              </div>
+            </>
+          ) : (
             <div className="empty-list">
               <i className="fas fa-clipboard-list empty-icon" />
               <span>Add your first To Do!</span>
@@ -61,8 +70,19 @@ const TodoList = ({
   </div>
 );
 
+const filterItems = (items: Item[], filter: string) => {
+  switch (filter) {
+    case VisibilityFilters.SHOW_ACTIVE:
+      return items.filter((item) => !item.complete);
+    case VisibilityFilters.SHOW_COMPLETED:
+      return items.filter((item) => item.complete);
+    default:
+      return items;
+  }
+};
+
 const mapStateToProps = (state: ApplicationState) => ({
-  items: state.items.data,
+  items: filterItems(state.items.data, state.filterState),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(itemsActions, dispatch);
