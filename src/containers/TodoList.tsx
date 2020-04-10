@@ -53,10 +53,13 @@ const TodoList = ({
                   removeItem={removeItem}
                 />
               ))}
-              <div>
-                <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-                <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-                <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+              <div className="filters-container">
+                <span>3 tasks left</span>
+                <div className="filters">
+                  <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+                  <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+                  <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+                </div>
               </div>
             </>
           ) : (

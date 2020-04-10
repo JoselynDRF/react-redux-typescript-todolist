@@ -122,7 +122,25 @@ body {
           border-top: 1px solid $background-color;
         }
       }
- 
+
+      .filters-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+        padding: 0.5rem;
+        font-size: 14px;
+        color: $text-light-color;
+
+        .filters > * {
+          margin: 0 0.2rem;
+          cursor: pointer;
+
+          &:hover, &.selected {
+            color: $text-color;
+          }
+        }
+      }
+
       .empty-list {
         display: flex;
         flex-direction: column;

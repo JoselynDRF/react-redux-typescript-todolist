@@ -25,13 +25,13 @@ const FilterLink = ({
   filter,
   filterSelected,
 }: Props) => (
-  <button
-    type="button"
+  <span
+    role="presentation"
     onClick={() => updateFilter(filter)}
-    disabled={filterSelected}
+    className={filterSelected ? 'selected' : ''}
   >
     {children}
-  </button>
+  </span>
 );
 
 const mapStateToProps = ({ filterState }: ApplicationState, { filter }: OwnProps) => ({
