@@ -3,11 +3,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import Header from '../components/Header';
+import TodoFilters from '../components/TodoFilters';
 import TodoForm from '../components/TodoForm';
 import TodoItem from '../components/TodoItem';
 import * as itemsActions from '../store/actions/items';
 import { ApplicationState, Item, VisibilityFilters } from '../types';
-import FilterLink from './FilterLink';
 
 interface StateProps {
   items: Item[],
@@ -33,8 +33,14 @@ const TodoList = ({
   removeItem,
   filterState,
 }: Props) => {
-  const activeItems = () => items.filter((item) => !item.complete).length;
-  const completedItems = () => items.filter((item) => item.complete).length;
+  const getTaskCounter = () => (filterState === VisibilityFilters.SHOW_COMPLETED
+    ? {
+      counter: items.filter((item) => item.complete).length,
+      text: 'completed tasks',
+    } : {
+      counter: items.filter((item) => !item.complete).length,
+      text: 'tasks left',
+    });
 
   return (
     <div className="todo-list">
@@ -56,28 +62,7 @@ const TodoList = ({
                     <span>There are no tasks completed yet!</span>
                   </div>
 
-                  <div className="filters-container">
-                    {filterState === VisibilityFilters.SHOW_COMPLETED
-                      ? (
-                        <span>
-                          {completedItems()}
-                          {' '}
-                          completed tasks
-                        </span>
-                      )
-                      : (
-                        <span>
-                          {activeItems()}
-                          {' '}
-                          tasks left
-                        </span>
-                      ) }
-                    <div className="filters">
-                      <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-                      <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-                      <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
-                    </div>
-                  </div>
+                  <TodoFilters taskCounter={getTaskCounter()} />
                 </>
               ) : (
                 <div className="empty-list">
@@ -100,28 +85,7 @@ const TodoList = ({
                 ))}
               </ul>
 
-              <div className="filters-container">
-                {filterState === VisibilityFilters.SHOW_COMPLETED
-                  ? (
-                    <span>
-                      {completedItems()}
-                      {' '}
-                      completed tasks
-                    </span>
-                  )
-                  : (
-                    <span>
-                      {activeItems()}
-                      {' '}
-                      tasks left
-                    </span>
-                  ) }
-                <div className="filters">
-                  <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-                  <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-                  <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
-                </div>
-              </div>
+              <TodoFilters taskCounter={getTaskCounter()} />
             </>
           )}
       </div>

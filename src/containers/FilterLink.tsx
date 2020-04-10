@@ -28,7 +28,7 @@ const FilterLink = ({
   <span
     role="presentation"
     onClick={() => updateFilter(filter)}
-    className={filterSelected ? 'selected' : ''}
+    className={filterSelected ? 'active' : ''}
   >
     {children}
   </span>
