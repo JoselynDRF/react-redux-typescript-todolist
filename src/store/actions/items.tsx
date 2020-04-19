@@ -1,4 +1,4 @@
-import { ItemsTypes, Item } from '../../types';
+import { Item, ItemsTypes } from '../../types';
 
 export const addItem = (text: string) => ({
   type: ItemsTypes.ADD_ITEM,
@@ -21,7 +21,7 @@ export const toggleEditItem = (id: number) => ({
   },
 });
 
-export const updateItem = (id:number, text: string) => ({
+export const updateItem = (id: number, text: string) => ({
   type: ItemsTypes.UPDATE_ITEM,
   payload: {
     id,
