@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import Header from '../components/Header';
@@ -19,7 +19,8 @@ interface DispatchProps {
   toggleItem(id: number): void,
   toggleEditItem(id: number): void,
   updateItem(id: number, text: string): void,
-  removeItem(id: number): void
+  removeItem(id: number): void,
+  loadRequest(): void
 }
 
 type Props = StateProps & DispatchProps;
@@ -32,7 +33,12 @@ const TodoList = ({
   updateItem,
   removeItem,
   filterState,
+  loadRequest,
 }: Props) => {
+  useEffect(() => {
+    loadRequest();
+  }, [loadRequest]);
+
   const getTaskCounter = () => (filterState === VisibilityFilters.SHOW_COMPLETED
     ? {
       counter: items.filter((item) => item.complete).length,

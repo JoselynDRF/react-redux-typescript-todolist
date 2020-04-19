@@ -6,7 +6,10 @@ export enum ItemsTypes {
   TOGGLE_ITEM = 'TOGGLE_ITEM',
   TOGGLE_EDIT_ITEM = 'TOGGLE_EDIT_ITEM',
   UPDATE_ITEM = 'UPDATE_ITEM',
-  REMOVE_ITEM = 'REMOVE_ITEM'
+  REMOVE_ITEM = 'REMOVE_ITEM',
+  LOAD_REQUEST = 'LOAD_REQUEST',
+  LOAD_SUCCESS = 'LOAD_SUCCESS',
+  LOAD_FAILURE = 'LOAD_FAILURE'
 }
 
 /**
@@ -21,7 +24,8 @@ export enum VisibilityFilters {
 
 export interface TodoListActionTypes {
   type: string,
-  payload: Item
+  payload: Item,
+  data: Item[]
 }
 
 export interface FilterActionTypes {

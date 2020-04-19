@@ -1,4 +1,4 @@
-import { ItemsTypes } from '../../types';
+import { ItemsTypes, Item } from '../../types';
 
 export const addItem = (text: string) => ({
   type: ItemsTypes.ADD_ITEM,
@@ -34,4 +34,17 @@ export const removeItem = (id: number) => ({
   payload: {
     id,
   },
+});
+
+export const loadRequest = () => ({
+  type: ItemsTypes.LOAD_REQUEST,
+});
+
+export const loadSuccess = (data: Item[]) => ({
+  type: ItemsTypes.LOAD_SUCCESS,
+  data,
+});
+
+export const loadFailure = () => ({
+  type: ItemsTypes.LOAD_FAILURE,
 });

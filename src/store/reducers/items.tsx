@@ -45,6 +45,19 @@ export default (state = initialState, action: TodoListActionTypes): ItemsState =
         data: state.data.filter((item) => item.id !== action.payload.id),
       };
 
+    case ItemsTypes.LOAD_REQUEST:
+      return { ...state };
+
+    case ItemsTypes.LOAD_SUCCESS:
+      return {
+        data: action.data,
+      };
+
+    case ItemsTypes.LOAD_FAILURE:
+      return {
+        data: [],
+      };
+
     default:
       return state;
   }

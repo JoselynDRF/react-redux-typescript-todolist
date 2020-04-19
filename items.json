@@ -1,0 +1,22 @@
+{
+  "items": [
+    { 
+      "id": 1,
+      "text": "Item 1",
+      "editing": false,
+      "complete": false
+    },
+    { 
+      "id": 2,
+      "text": "Item 2",
+      "editing": false,
+      "complete": true
+    },
+    { 
+      "id": 3,
+      "text": "Item 3",
+      "editing": false,
+      "complete": false
+    }
+  ]
+}
