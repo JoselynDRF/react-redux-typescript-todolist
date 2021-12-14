@@ -22,6 +22,6 @@ Tools needed to run this app: `node` and `npm`
 ### Running the App:
 After you have installed all dependencies, you may run the app.
 
-- `json-server --watch items.json`
+- `npm run json-server`
 - `npm start`
 - Go to `http://localhost:3000`
