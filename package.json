@@ -1,6 +1,7 @@
 {
   "name": "react-redux-typescript-todolist",
   "version": "0.1.0",
+  "homepage": "https://joselyndrf.github.io/react-redux-typescript-todolist",
   "private": true,
   "dependencies": {
     "@types/node": "^13.13.52",
@@ -27,12 +28,15 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-react": "^7.18.3",
+    "gh-pages": "^4.0.0",
     "prettier": "^1.19.1"
   },
   "scripts": {
-    "start": "react-scripts start",
     "json-server": "json-server --watch items.json",
-    "build": "react-scripts build"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
