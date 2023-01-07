@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-redux-typescript-todolist/static/css/main.9f855c79.chunk.css",
+    "main.js": "/react-redux-typescript-todolist/static/js/main.7a362753.chunk.js",
+    "main.js.map": "/react-redux-typescript-todolist/static/js/main.7a362753.chunk.js.map",
+    "runtime-main.js": "/react-redux-typescript-todolist/static/js/runtime-main.db16f1ff.js",
+    "runtime-main.js.map": "/react-redux-typescript-todolist/static/js/runtime-main.db16f1ff.js.map",
+    "static/js/2.09bccbab.chunk.js": "/react-redux-typescript-todolist/static/js/2.09bccbab.chunk.js",
+    "static/js/2.09bccbab.chunk.js.map": "/react-redux-typescript-todolist/static/js/2.09bccbab.chunk.js.map",
+    "index.html": "/react-redux-typescript-todolist/index.html",
+    "precache-manifest.24533da8d9e74063a2fa82d75fbe4070.js": "/react-redux-typescript-todolist/precache-manifest.24533da8d9e74063a2fa82d75fbe4070.js",
+    "service-worker.js": "/react-redux-typescript-todolist/service-worker.js",
+    "static/css/main.9f855c79.chunk.css.map": "/react-redux-typescript-todolist/static/css/main.9f855c79.chunk.css.map",
+    "static/js/2.09bccbab.chunk.js.LICENSE.txt": "/react-redux-typescript-todolist/static/js/2.09bccbab.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.db16f1ff.js",
+    "static/js/2.09bccbab.chunk.js",
+    "static/css/main.9f855c79.chunk.css",
+    "static/js/main.7a362753.chunk.js"
+  ]
+}
